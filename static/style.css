@@ -4982,3 +4982,118 @@ Version:1.0
 	End Footer CSS
 ===============================*/
 
+/* Product Details */
+.product-details {
+    padding: 60px 0;
+}
+
+.product-details-thumb img {
+    width: 100%;
+}
+
+.product-details-content {
+    padding-left: 40px;
+}
+
+.product-details-content h2 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.product-details-content .price {
+    margin-bottom: 20px;
+}
+
+.product-details-content .price .new {
+    font-size: 24px;
+    color: #ff4a52;
+}
+
+.product-details-content .description {
+    margin-bottom: 30px;
+}
+
+.product-details-content .description h4 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.product-details-content .description p {
+    font-size: 14px;
+    color: #666;
+}
+
+.product-details-content .product-details-quantity {
+    margin-bottom: 30px;
+}
+
+.product-details-content .product-details-quantity h4 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.product-details-content .cart-plus-minus {
+    position: relative;
+    width: 100px;
+    display: flex;
+    align-items: center;
+}
+
+.product-details-content .cart-plus-minus-box {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    color: #666;
+    border: 1px solid #ddd;
+}
+
+.product-details-content .cart-plus-minus .dec,
+.product-details-content .cart-plus-minus .inc {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 38px;
+    text-align: center;
+    color: #666;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    cursor: pointer;
+}
+
+.product-details-content .cart-plus-minus .dec::before,
+.product-details-content .cart-plus-minus .inc::before {
+    content: '\02190'; /* Unicode arrow character */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.product-details-content .cart-plus-minus .inc::before {
+    content: '\02192'; /* Unicode arrow character */
+}
+
+.product-details-content .product-details-cart {
+    margin-top: 20px;
+}
+
+.product-details-content .product-details-cart form {
+    display: inline-block;
+}
+
+.product-details-content .product-details-cart button {
+    padding: 15px 30px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    background-color: #ff4a52;
+    border: none;
+    cursor: pointer;
+}

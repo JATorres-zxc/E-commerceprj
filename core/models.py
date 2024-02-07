@@ -96,6 +96,8 @@ class Product(models.Model):
     old_price = models.DecimalField(max_digits=9, decimal_places=2, default='1.00')
     specifications = models.TextField(null=True, blank=True, default='specs')
     # tags = models.ForeignKey(Tags, on_delete=models.SET_DEFAULT, null=True, default=None)
+    type = models.CharField(max_length=100, default='something', null=True, blank=True) # for title, heading etc
+    stock_count = models.CharField(max_length=100, default='0', null=True, blank=True)
     
     vendor = models.ForeignKey(Vendor, on_delete=models.SET_DEFAULT, null=True,default= None)
     product_status = models.CharField(choices=STATUS, max_length=10, default='in_review')

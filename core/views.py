@@ -41,3 +41,21 @@ def category_product_list_view(request, cid):
     }
     
     return render(request, 'core/category-products-list.html', context)
+
+
+# def vendow_list_view(request):
+#     vendor = Vendor.objects.all()
+#     context = {
+#         'vendor':vendor,
+#     }
+    
+#     return render(request, 'core/vendor-list.html', context)
+
+def product_detail_view(request, pid):
+    product = Product.objects.get(pid=pid)
+
+    context = {
+        'product':product
+    }
+    
+    return render(request, 'core/product-detail.html', context)
