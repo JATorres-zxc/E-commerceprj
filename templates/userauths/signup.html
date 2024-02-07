@@ -1,0 +1,72 @@
+{% load static %}
+
+    <!-- Breadcrumbs -->
+    <!-- <div class="breadcrumbs">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="bread-inner">
+                        <ul class="bread-list">
+                            <li><a>Good Day Shoppers! <i class="ti-arrow-right"></i></a></li>
+                            <li class="active"><a href="registration.html">Register</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <!-- End Breadcrumbs -->
+
+    <!-- Start Login Section -->
+    <section id="register" class="login section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 offset-lg-3 col-12">
+                    <div class="login-form">
+
+                        {% if form.errors%}
+                        <div class="alert alert-danger">
+                            <strong>{{form.errors}}</strong>
+                        </div>
+                        {% endif%}
+
+                        <h2>Register</h2>
+                        {% if user_created %}
+                            <p>User created successfully!</p>
+                        {% endif %}
+
+                        <div class="Haveanaccount">
+                            <h1 class="haveaccout">Already have an account?</h1>
+                            <p class="create">Login <a href="{% url 'userauths:login' %}">here</a></p>
+                        </div>
+
+                        <form method="POST" action="{% url 'userauths:signup' %}">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label>Username<span>*</span></label>
+                                {{form.username}}
+                            </div>
+                            <div class="form-group">
+                                <label>Email<span>*</span></label>
+                                {{form.email}}
+                            </div>
+                            <div class="form-group">
+                                <label>Password<span>*</span></label>
+                                {{form.password1}}
+                            </div>
+                            <div class="form-group">
+                                <label>Confirm Password<span>*</span></label>
+                                {{form.password2}}
+                            </div>
+                            <div class="form-group form-button">
+                                <button type="submit" class="btn btn-heading btn-block hover-up">Register</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    
+    <!-- End Login Section -->

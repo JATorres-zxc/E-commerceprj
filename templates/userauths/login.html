@@ -1,0 +1,42 @@
+{% load static %}
+
+<!-- Start Login Section -->
+    <section id="login" class="login section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 offset-lg-3 col-12">
+                    <div class="login-form">
+                        <h2>Login</h2>
+                        
+                        {% if messages %}
+                            <ul class="messages">
+                                {% for message in messages %}
+                                    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                        <div class="donthaveanaccout">
+                            <h1 class="createanaccout">Don't have an account?</h1>
+                            <p class="create">Create an account <a href="{% url 'userauths:signup' %}">here</a></p>
+                        </div>
+                        <form method="post" action="{% url 'userauths:login' %}">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label>Email<span>*</span></label>
+                                <input type="text" name="email" placeholder="Enter your Email">
+                            </div>
+                            <div class="form-group">
+                                <label>Password<span>*</span></label>
+                                <input type="password" name="password" placeholder="Enter your Password" required>
+                            </div>
+                            <div class="form-group form-button">
+                                <button type="submit" class="btn" name="login">Login</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Login Section -->
