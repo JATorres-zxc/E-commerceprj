@@ -132,9 +132,9 @@
 									<option>mobile</option>
 									<option>kid’s item</option>
 								</select>
-								<form>
-									<input name="search" placeholder="Search Products Here....." type="search">
-									<button class="btnn"><i class="ti-search"></i></button>
+								<form method="get" action="{% url 'core:search' %}">
+									<input name="q" placeholder="Search Products Here....." type="text">
+									<button class="btnn" type="submit"><i class="ti-search"></i></button>
 								</form>
 							</div>
 						</div>
@@ -293,7 +293,7 @@
 										</div>
 									</div>
 								</nav>
-								<!--/ End Main Menu -->	
+								<!--/ End Main Menu	
 							</div>
 						</div>
 					</div>

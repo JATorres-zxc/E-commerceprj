@@ -4,6 +4,7 @@ from django.utils.html import mark_safe
 # from django.utils.safestring import mark_safe
 from userauths.models import User
 import uuid
+from taggit.managers import TaggableManager
 
 
 
@@ -95,7 +96,6 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=9, decimal_places=2, default='0.00')
     old_price = models.DecimalField(max_digits=9, decimal_places=2, default='1.00')
     specifications = models.TextField(null=True, blank=True, default='specs')
-    # tags = models.ForeignKey(Tags, on_delete=models.SET_DEFAULT, null=True, default=None)
     type = models.CharField(max_length=100, default='something', null=True, blank=True) # for title, heading etc
     stock_count = models.CharField(max_length=100, default='0', null=True, blank=True)
     
@@ -110,6 +110,8 @@ class Product(models.Model):
 
     date = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(null=True, blank=True)
+    
+    # tags = TaggableManager(blank=True)
 
     class Meta:
         verbose_name_plural = 'Products'

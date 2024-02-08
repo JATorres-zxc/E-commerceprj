@@ -33,14 +33,20 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'django.contrib.admin',
-    'jazzmin',
+    'jazzmin', # wag nalang pala
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    # customapps
     'core',
     'userauths',
+    
+    # 3rdpartyapps
+    'taggit'
+    
 ]
 
 

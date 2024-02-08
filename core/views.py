@@ -54,8 +54,27 @@ def category_product_list_view(request, cid):
 def product_detail_view(request, pid):
     product = Product.objects.get(pid=pid)
 
+    # products = Product.objects.filter(category=product.category)
+    
+    # p_image = product.product_image.all()
+    
     context = {
-        'product':product
+        'product':product,
+        # 'p_image':p_image,
+        # 'products':products
     }
     
     return render(request, 'core/product-detail.html', context)
+
+
+def search_view(request):
+    query = request.GET.get('q')
+    
+    products = Product.objects.filter(title__icontains=query).order_by('-date')
+    
+    context = {
+        'products':products,
+        'query':query,
+    }
+    
+    return render(request, 'core/search.html', context)
