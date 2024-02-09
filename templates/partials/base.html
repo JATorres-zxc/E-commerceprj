@@ -105,7 +105,7 @@
 					<div class="col-lg-2 col-md-2 col-12">
 						<!-- Logo -->
 						<div class="logo">
-							<a href="index.html"><img src="{% static 'images/logo.png' %}" alt="logo"></a>
+							<a href="{% url 'core:index' %}"><img src="{% static 'images/logo.png' %}" alt="logo"></a>
 						</div>
 						<!--/ End Logo -->
 						<!-- Search Form -->
@@ -149,7 +149,7 @@
 								<a href="#" class="single-icon"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
 							</div>
 							<div class="sinlge-bar shopping">
-								<a href="#" class="single-icon"><i class="ti-bag"></i> <span class="total-count">2</span></a>
+								<a class="single-icon"><i class="ti-bag"></i> <span class="total-count cart-items-count">{{ request.session.cart_data_obj|length }}</span></a>
 								<!-- Shopping Item -->
 								<div class="shopping-item">
 									<div class="dropdown-cart-header">
@@ -445,5 +445,7 @@
 	<script src="{% static 'js/easing.js' %}"></script>
 	<!-- Active JS -->
 	<script src="{% static 'js/active.js' %}"></script>
+	<!-- product details -->
+	<script src="{% static 'js/product-details.js' %}"></script>
 </body>
 </html>

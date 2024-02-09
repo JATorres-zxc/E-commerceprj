@@ -15,7 +15,7 @@
                     <div class="product-details-content">
                         <h2>{{ product.title }}</h2>
                         <div class="price">
-                            <span class="new">{{ product.price }}</span>
+                            <span>₱</span><span id="product-price">{{ product.price }}</span>
                         </div>
                         <div class="description">
                             <h4>Description:</h4>
@@ -31,18 +31,21 @@
                         </div>
                         <div class="product-details-quantity">
                             <h4>Quantity:</h4>
-                            <div class="cart-plus-minus">
-                                <div class="dec qtybutton">-</div>
-                                <input class="cart-plus-minus-box" type="text" name="qtybutton" value="1">
-                                <div class="inc qtybutton">+</div>
-                            </div>
+                            <!-- <div class="cart-plus-minus"> -->
+                                <br>
+                                <input class="cart-plus-minus-box" type="number" name="qtybutton" value="1" id="product-quantity">
+                                <br>
+                                <br>
+                            <!-- </div> -->
                         </div>
                         <div class="product-details-cart">
-                            <form method="post" action="/product_details/">
-                                {% csrf_token %}
-                                <input type="hidden" name="quantity" value="1">
-                                <button type="submit" class="btn">Add to Cart</button>
-                            </form>
+                        
+                            <!-- <form id="add-to-cart-form"> -->
+                                <input type="hidden" class="product-id" value='{{ product.id }}'>
+                                <input type="hidden" class="product-title" value='{{ product.title }}'>
+                                <button type="submit" class="btn" id="add-to-cart-btn">Add to Cart</button>
+                            <!-- </form> -->
+                        
                         </div>
                     </div>
                 </div>
