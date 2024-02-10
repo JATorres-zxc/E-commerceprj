@@ -49,7 +49,13 @@
                                                         <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
                                                     </div>
                                                     <div class="product-action-2">
-                                                        <a title="Add to cart" href="#">Add to cart</a>
+
+                                                        <input type="hidden" value="1" id="product-quantity" class="product-quantity-{{ p.id }}">
+                                                        <input type="hidden" class="product-pid-{{ p.id }}" value="{{ p.pid }}">
+                                                        <input type="hidden" class="product-image-{{ p.id }}" value="{{ p.image.url }}">
+                                                        <input type="hidden" class="product-id-{{ p.id }}" value="{{p.id}}">
+                                                        <input type="hidden" class="product-title-{{ p.id }}" value="{{p.title}}">
+                                                        <button class="add btn add-to-cart-btn" data-index="{{ p.id }}" id="add-to-cart-btn"   title="Add to cart">Add to cart</button>
                                                     </div>
                                                 </div>
                                             </div>

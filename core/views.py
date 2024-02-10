@@ -82,10 +82,18 @@ def search_view(request):
 
 def add_to_cart(request):
     cart_product = {}
+
+    required_params = ['id', 'title', 'qty', 'price']
+    for param in required_params:
+        if param not in request.GET:
+            return JsonResponse({'error': f'Missing parameter: {param}'}, status=400)
+        
     cart_product[str(request.GET['id'])] = {
         'title': request.GET['title'],
         'qty': request.GET['qty'],
         'price': request.GET['price'],
+        'image':request.GET['image'],
+        'pid':request.GET['pid'],
     }
     
     if 'cart_data_obj' in request.session:
