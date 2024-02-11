@@ -34,7 +34,7 @@
                             <h4>Quantity:</h4>
                             <!-- <div class="cart-plus-minus"> -->
                                 <br>
-                                <input class="cart-plus-minus-box" type="number" name="qtybutton" value="1" id="product-quantity">
+                                <input class="cart-plus-minus-box product-quantity-{{ product.id }}" type="number" name="qtybutton" value="1" id="product-quantity">
                                 <br>
                                 <br>
                             <!-- </div> -->
@@ -44,7 +44,7 @@
                             <!-- <form id="add-to-cart-form"> -->
                                 <!-- <input type="hidden" class="product-id" value='{{ product.id }}'>
                                 <input type="hidden" class="product-title" value='{{ product.title }}'> -->
-                                <input type="hidden" value="1" id="product-quantity" class="product-quantity-{{ product.id }}">
+                                <!-- <input type="hidden" value="1" id="product-quantity" class="product-quantity-{{ product.id }}"> -->
                                 <input type="hidden" class="product-pid-{{ product.id }}" value="{{ product.pid }}">
                                 <input type="hidden" class="product-image-{{ product.id }}" value="{{ product.image.url }}">
                                 <input type="hidden" class="product-id-{{ product.id }}" value="{{product.id}}">

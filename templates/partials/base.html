@@ -149,33 +149,38 @@
 								<a href="#" class="single-icon"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
 							</div>
 							<div class="sinlge-bar shopping">
-								<a class="single-icon"><i class="ti-bag"></i> <span class="total-count cart-items-count">{{ request.session.cart_data_obj|length }}</span></a>
+								<a href="{% url 'core:cart'%}" class="single-icon"><i class="ti-bag"></i> <span class="total-count cart-items-count">{{ request.session.cart_data_obj|length }}</span></a>
 								<!-- Shopping Item -->
 								<div class="shopping-item">
 									<div class="dropdown-cart-header">
-										<span>2 Items</span>
-										<a href="#">View Cart</a>
+										<span>{{ totalcartitems}} item/s</span>
+										<a href="{% url 'core:cart'%}">View Cart</a>
 									</div>
+									{% for product_id, item in cart_data.items %}
 									<ul class="shopping-list">
 										<li>
-											<a href="#" class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>
-											<a class="cart-img" href="#"><img src="https://via.placeholder.com/70x70" alt="#"></a>
-											<h4><a href="#">Woman Ring</a></h4>
-											<p class="quantity">1x - <span class="amount">$99.00</span></p>
+											<!-- <a href="#" class="remove" title="Remove this item"><i class="fa fa-remove"></i></a> -->
+											<a class="cart-img" href="{% url 'core:product-detail' item.pid %}"><img src="{{ item.image}}" alt="#"></a>
+											<h4><a href="{% url 'core:product-detail' item.pid %}">{{ item.title }}</a></h4>
+											<!-- <p class="quantity">1x - <span class="amount">$99.00</span></p> -->
+											<span>{{ item.qty }} pc/s ---  </span>
+											<span>₱{{ item.price|floatformat:2}}</span>
+											
 										</li>
-										<li>
+										<!-- <li>
 											<a href="#" class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>
 											<a class="cart-img" href="#"><img src="https://via.placeholder.com/70x70" alt="#"></a>
 											<h4><a href="#">Woman Necklace</a></h4>
 											<p class="quantity">1x - <span class="amount">$35.00</span></p>
-										</li>
+										</li> -->
 									</ul>
+									{% endfor %}
 									<div class="bottom">
 										<div class="total">
 											<span>Total</span>
-											<span class="total-amount">$134.00</span>
+											<span class="total-amount">₱{{cart_total_amount|floatformat:2}}</span>
 										</div>
-										<a href="checkout.html" class="btn animate">Checkout</a>
+										<a href="" class="btn animate">Checkout</a>
 									</div>
 								</div>
 								<!--/ End Shopping Item -->
