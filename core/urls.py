@@ -1,5 +1,5 @@
 from django.urls import path
-from core.views import index, product_list_view, category_list_view, category_product_list_view, product_detail_view, search_view, add_to_cart, cart_view, delete_item_from_cart, update_from_cart
+from core.views import index, product_list_view, category_list_view, category_product_list_view, product_detail_view, search_view, add_to_cart, cart_view, delete_item_from_cart, update_from_cart, checkout_view, checkout_process, clear_cart
 
 app_name = 'core'
 
@@ -29,4 +29,13 @@ urlpatterns = [
     
     # update cart function
     path('update-cart/', update_from_cart, name='update-cart'),
+    
+    # checkout page
+    path('checkout/', checkout_view, name='checkout'),
+    
+    # proceed to checkout   
+    path('checkout_process/', checkout_process, name='checkout_process'),
+    
+    # clear cart
+    path('clear-cart/', clear_cart, name='clear_cart'),
 ]

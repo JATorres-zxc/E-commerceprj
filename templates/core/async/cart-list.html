@@ -104,9 +104,9 @@
 									</ul>
 									<div class="button5">
                                         {% if totalcartitems %}
-										<a href="#" class="btn">Checkout</a>
+										<a href="{% url 'core:checkout'%}" class="btn">Checkout</a>
                                         {% endif %}
-										<a href="#" class="btn">Continue shopping</a>
+										<a href="{% url 'core:product-list'%}" class="btn">Continue shopping</a>
 									</div>
 								</div>
 							</div>

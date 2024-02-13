@@ -2,7 +2,9 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.contrib import messages
 from django.template.loader import render_to_string
-from django.http import HttpRequest
+from django.http import HttpRequest, HttpResponseRedirect
+from django.urls import reverse
+
 
 
 from core.models import Address, Category, Vendor, Product, ProductImage, ProductReview, Wishlist, CartOrder, CartOrderItems
@@ -197,3 +199,56 @@ def update_from_cart(request):
     context = render_to_string('core/async/cart-list.html', {'cart_data': request.session['cart_data_obj'], 'totalcartitems': len(request.session['cart_data_obj']), 'cart_total_amount':cart_total_amount})
     
     return JsonResponse({'data':context, 'totalcartitems': len(request.session['cart_data_obj'])})
+
+def checkout_view(request):
+    cart_total_amount = 0
+    
+    if 'cart_data_obj' in request.session:
+        for p_id, item in request.session['cart_data_obj'].items():
+            cart_total_amount += int(item['qty']) * float(item['price'])
+            
+        return render(request, 'core/checkout.html', {'cart_data': request.session['cart_data_obj'], 'totalcartitems': len(request.session['cart_data_obj']), 'cart_total_amount':cart_total_amount})
+    else:
+        return HttpResponseRedirect(reverse('core:checkout')) 
+
+def checkout_process(request):
+    cart_total_amount = 0
+
+    if 'cart_data_obj' in request.session:
+        cart = request.session['cart_data_obj']
+        for p_id, item in cart.items():
+            cart_total_amount += int(item['qty']) * float(item['price'])
+            
+        return render(
+            request, 
+            'core/checkout_process.html', 
+            {'cart_data': request.session['cart_data_obj'], 'totalcartitems': len(request.session['cart_data_obj']), 'cart_total_amount':cart_total_amount})
+        
+# def clear_cart(request):
+#     if 'cart_data_obj' in request.session:
+#         del request.session['cart_data_obj']
+#     return JsonResponse({'message': 'Cart is now EMPTY'})
+def clear_cart(request):
+    if 'cart_data_obj' in request.session:
+        del request.session['cart_data_obj']
+    next_url = request.GET.get('next', None)
+    if next_url:
+        return redirect(next_url)
+    else:
+        return JsonResponse({'message': 'Cart is now EMPTY'})
+
+
+    #     # Extract data from the cart session
+    #     cart_data = request.session['cart_data_obj']
+        
+    #     # Process the checkout data as needed (e.g., save to a database)
+    #     # For demonstration, let's just print the cart data
+    #     print("Checkout Data:", cart_data)
+        
+    #     # Reset the cart session to clear out the cart data
+    #     del request.session['cart_data_obj']
+    #     request.session.modified = True
+        
+    #     return redirect('core:checkout_confirmation') 
+    # else:
+    #     return redirect('core:cart')

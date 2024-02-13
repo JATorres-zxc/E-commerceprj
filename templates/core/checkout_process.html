@@ -1,0 +1,150 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+	<!-- Meta Tag -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name='copyright' content=''>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Title Tag  -->
+    <title>Eshop - eCommerce HTML5 Template.</title>
+	<!-- Favicon -->
+	<link rel="icon" type="image/png" href="images/favicon.png">
+	<!-- Web Font -->
+	<link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+	
+	<!-- StyleSheet -->
+	
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+	<!-- Magnific Popup -->
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.min.css' %}">
+	<!-- Font Awesome -->
+    <link rel="stylesheet" href="{% static 'css/font-awesome.css' %}">
+	<!-- Fancybox -->
+	<link rel="stylesheet" href="{% static 'css/jquery.fancybox.min.css' %}">
+	<!-- Themify Icons -->
+    <link rel="stylesheet" href="{% static 'css/themify-icons.css' %}">
+	<!-- Nice Select CSS -->
+    <link rel="stylesheet" href="{% static 'css/niceselect.css' %}">
+	<!-- Animate CSS -->
+    <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+	<!-- Flex Slider CSS -->
+    <link rel="stylesheet" href="{% static 'css/flex-slider.min.css' %}">
+	<!-- Owl Carousel -->
+    <link rel="stylesheet" href="{% static 'css/owl-carousel.css' %}">
+	<!-- Slicknav -->
+    <link rel="stylesheet" href="{% static 'css/slicknav.min.css' %}">
+	
+	<!-- Eshop StyleSheet -->
+	<link rel="stylesheet" href="{% static 'css/reset.css' %}">
+	<link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+	
+	
+</head>
+	<!-- Shopping Cart -->
+    <h1 style="text-align: center;">Eshop INVOICE:</h1>
+	<div class="shopping-cart section">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<!-- Shopping Summery -->
+					<table class="table shopping-summery">
+						<thead>
+							<tr class="main-hading">
+								<th>PRODUCT</th>
+								<th>NAME</th>
+								<th class="text-center">UNIT PRICE</th>
+								<th class="text-center">QUANTITY</th>
+								<th class="text-center">REFRESH</th>
+								<th class="text-center">TOTAL</th> 
+								<th class="text-center"><i class="ti-trash remove-icon"></i></th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for product_id, item in cart_data.items %}
+							<tr>
+								<td class="image" data-title="No"><img src="{{ item.image}}" alt="#"></td>
+								<td class="product-des" data-title="Description">
+									<p class="product-name"><a href="{% url 'core:product-detail' item.pid %}">{{ item.title }}</a></p>
+									<!-- <p class="product-des">{{ item.description}}</p> -->
+								</td>
+								<td class="price" data-title="Price"><span>₱{{ item.price|floatformat:2}}</span></td>
+								<td class="qty" data-title="Qty"><!-- Input Order -->
+									<div class="input-group">
+										<input type="text" style="text-align: center;" class="w-35 product-qty-{{ product_id }}" value="{{ item.qty }}">
+										<!-- <div class="button minus">
+											<button type="button" class="btn btn-primary btn-number" disabled="disabled" data-type="minus" data-field="quant[1]">
+												<i class="ti-minus"></i>
+											</button>
+										</div>
+										<input type="text" name="quant[1]" class="input-number"  data-min="1" data-max="100" value="1">
+										<div class="button plus">
+											<button type="button" class="btn btn-primary btn-number" data-type="plus" data-field="quant[1]">
+												<i class="ti-plus"></i>
+											</button>
+										</div> -->
+									</div>
+									<!--/ End Input Order -->
+								</td>
+								<!-- <td class="action" data-title="Refresh"><a href="#"><i class="ti-reload refresh-icon"></i></a></td> -->
+								<td class="action" data-title="Remove"><button style="border: none; background:none" class="text-body update-product" data-product="{{product_id}}"><i class="ti-reload refresh-icon"></i></button></td>
+
+								<td class="total-amount" data-title="Total"><span>₱{% widthratio item.price 1 item.qty %}</span></td>
+								<td class="action" data-title="Remove"><button style="border: none; background:none" class="text-body delete-product" data-product="{{product_id}}"><i class="ti-trash remove-icon"></i></button></td>
+
+							</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+					<!--/ End Shopping Summery -->
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-12">
+					<!-- Total Amount -->
+					<div class="total-amount">
+						<div class="row">
+							<div class="col-lg-8 col-md-5 col-12">
+								<div class="left">
+									<div class="coupon">
+										<form action="#" target="_blank">
+											<!-- <input name="Coupon" placeholder="Enter Your Coupon"> -->
+                                            <a href="{% url 'core:clear_cart' %}?next={% url 'core:index' %}" class="btn">Clear Cart and Go Back to Homepage</a>
+										</form>
+									</div>
+									<!-- <div class="checkbox">
+										<label class="checkbox-inline" for="2"><input name="news" id="2" type="checkbox"> Shipping (+10$)</label>
+									</div> -->
+								</div>
+							</div>
+							<div class="col-lg-4 col-md-7 col-12">
+								<div class="right">
+									<ul>
+										<li>Cart Subtotal<span>₱{{cart_total_amount|floatformat:2}}</span></li>
+										<li>Shipping<span>Free</span></li>
+
+										<li class="last">You Paid<span>₱{{cart_total_amount|floatformat:2}}</span></li>
+									</ul>
+									<!-- <div class="button5">
+                                        {% if totalcartitems %}
+										<a href="{% url 'core:checkout'%}" class="btn">Checkout</a>
+                                        {% endif %}
+										<a href="{% url 'core:product-list'%}" class="btn">Continue shopping</a>
+									</div> -->
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--/ End Total Amount -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--/ End Shopping Cart -->
