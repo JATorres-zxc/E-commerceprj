@@ -44,7 +44,7 @@
 				<!-- Single Banner  -->
 				<div class="col-lg-4 col-md-6 col-12">
 					<div class="single-banner">
-						<img src="https://via.placeholder.com/600x370" alt="#">
+						<img src="media/user_1/mans.jpg" alt="#">
 						<div class="content">
 							<p>Man's Collectons</p>
 							<h3>Summer travel <br> collection</h3>
@@ -56,7 +56,7 @@
 				<!-- Single Banner  -->
 				<div class="col-lg-4 col-md-6 col-12">
 					<div class="single-banner">
-						<img src="https://via.placeholder.com/600x370" alt="#">
+						<img src="media/user_1/bagbig.jpg" alt="#">
 						<div class="content">
 							<p>Bag Collectons</p>
 							<h3>Awesome Bag <br> 2020</h3>
@@ -68,7 +68,7 @@
 				<!-- Single Banner  -->
 				<div class="col-lg-4 col-12">
 					<div class="single-banner tab-height">
-						<img src="https://via.placeholder.com/600x370" alt="#">
+						<img src="media/user_1/womens.jpg" alt="#">
 						<div class="content">
 							<p>Flash Sale</p>
 							<h3>Mid Season <br> Up to <span>40%</span> Off</h3>
@@ -124,8 +124,8 @@
 														<div class="button-head">
 															<div class="product-action">
 																<a href="{% url 'core:product-detail' p.pid %}"><i class=" ti-eye"></i><span>Quick Shop</span></a>
-																<a title="Wishlist" href="#"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
-																<a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
+																<a title="Wishlist" href="#"><i class=" ti-heart "></i><span>Add to Wishlist(In Progress)</span></a>
+																<a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare(In Progress)</span></a>
 															</div>
 															<div class="product-action-2">
 
@@ -1452,11 +1452,11 @@
 	<!-- End Product Area -->
 	
 	<!-- Start Midium Banner  -->
-	<section class="midium-banner">
+	<!-- <section class="midium-banner">
 		<div class="container">
-			<div class="row">
+			<div class="row"> -->
 				<!-- Single Banner  -->
-				<div class="col-lg-6 col-md-6 col-12">
+				<!-- <div class="col-lg-6 col-md-6 col-12">
 					<div class="single-banner">
 						<img src="https://via.placeholder.com/600x370" alt="#">
 						<div class="content">
@@ -1465,10 +1465,10 @@
 							<a href="#">Shop Now</a>
 						</div>
 					</div>
-				</div>
+				</div> -->
 				<!-- /End Single Banner  -->
 				<!-- Single Banner  -->
-				<div class="col-lg-6 col-md-6 col-12">
+				<!-- <div class="col-lg-6 col-md-6 col-12">
 					<div class="single-banner">
 						<img src="https://via.placeholder.com/600x370" alt="#">
 						<div class="content">
@@ -1477,11 +1477,11 @@
 							<a href="#" class="btn">Shop Now</a>
 						</div>
 					</div>
-				</div>
+				</div> -->
 				<!-- /End Single Banner  -->
-			</div>
+			<!-- </div>
 		</div>
-	</section>
+	</section> -->
 	<!-- End Midium Banner -->
 	
 	<!-- Start Most Popular -->
@@ -1498,35 +1498,44 @@
                 <div class="col-12">
                     <div class="owl-carousel popular-slider">
 						<!-- Start Single Product -->
+						{% for p in products %}
 						<div class="single-product">
 							<div class="product-img">
-								<a href="product-details.html">
-									<img class="default-img" src="https://via.placeholder.com/550x750" alt="#">
-									<img class="hover-img" src="https://via.placeholder.com/550x750" alt="#">
-									<span class="out-of-stock">Hot</span>
+								<a href="{% url 'core:product-detail' p.pid %}">
+									<img class="default-img" src="{{ p.image.url }}" alt="#">
+									<img class="hover-img" src="{{ p.image.url }}" alt="#">
+									<!-- <span class="out-of-stock">Hot</span> -->
 								</a>
 								<div class="button-head">
 									<div class="product-action">
-										<a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
-										<a title="Wishlist" href="#"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
-										<a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
+										<a href="{% url 'core:product-detail' p.pid %}"><i class=" ti-eye"></i><span>Quick Shop</span></a>
+										<a title="Wishlist" href="#"><i class=" ti-heart "></i><span>Add to Wishlist(In Progress)</span></a>
+										<a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare(In Progress)</span></a>
 									</div>
 									<div class="product-action-2">
-										<a title="Add to cart" href="#">Add to cart</a>
+										<input type="hidden" value="1" id="product-quantity" class="product-quantity-{{ p.id }}">
+										<input type="hidden" class="product-pid-{{ p.id }}" value="{{ p.pid }}">
+										<input type="hidden" class="product-image-{{ p.id }}" value="{{ p.image.url }}">
+										<input type="hidden" class="product-id-{{ p.id }}" value="{{p.id}}">
+										<input type="hidden" class="product-title-{{ p.id }}" value="{{p.title}}">
+										<input type="hidden" class="product-price-{{ p.id }}" value="{{p.price}}">
+
+										<button class="add btn add-to-cart-btn" data-index="{{ p.id }}" id="add-to-cart-btn"   title="Add to cart">Add to cart</button>
 									</div>
 								</div>
 							</div>
 							<div class="product-content">
-								<h3><a href="product-details.html">Black Sunglass For Women</a></h3>
+								<h3><a href="{% url 'core:product-detail' p.pid %}">{{p.title}}</a></h3>
 								<div class="product-price">
-									<span class="old">$60.00</span>
-									<span>$50.00</span>
+									<!-- <span class="old">$60.00</span> -->
+									<span>{{p.price}}</span>
 								</div>
 							</div>
 						</div>
+						{% endfor %}
 						<!-- End Single Product -->
 						<!-- Start Single Product -->
-						<div class="single-product">
+						<!-- <div class="single-product">
                             <div class="product-img">
                                 <a href="product-details.html">
                                     <img class="default-img" src="https://via.placeholder.com/550x750" alt="#">
@@ -1549,10 +1558,10 @@
                                     <span>$50.00</span>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 						<!-- End Single Product -->
 						<!-- Start Single Product -->
-						<div class="single-product">
+						<!-- <div class="single-product">
                             <div class="product-img">
                                 <a href="product-details.html">
                                     <img class="default-img" src="https://via.placeholder.com/550x750" alt="#">
@@ -1576,10 +1585,10 @@
                                     <span>$50.00</span>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 						<!-- End Single Product -->
 						<!-- Start Single Product -->
-						<div class="single-product">
+						<!-- <div class="single-product">
                             <div class="product-img">
                                 <a href="product-details.html">
                                     <img class="default-img" src="https://via.placeholder.com/550x750" alt="#">
@@ -1602,7 +1611,7 @@
                                     <span>$50.00</span>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 						<!-- End Single Product -->
                     </div>
                 </div>
@@ -1611,7 +1620,7 @@
     </div>
 	<!-- End Most Popular Area -->
 	
-	<section class="section free-version-banner">
+	<!-- <section class="section free-version-banner">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-8 offset-md-2 col-xs-12">
@@ -1627,204 +1636,9 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 	
 	<!-- Start Shop Home List  -->
-	<section class="shop-home-list section">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-4 col-md-6 col-12">
-					<div class="row">
-						<div class="col-12">
-							<div class="shop-section-title">
-								<h1>On sale</h1>
-							</div>
-						</div>
-					</div>
-					<!-- Start Single List  -->
-					<div class="single-list">
-						<div class="row">
-							<div class="col-lg-6 col-md-6 col-12">
-								<div class="list-image overlay">
-									<img src="https://via.placeholder.com/115x140" alt="#">
-									<a href="#" class="buy"><i class="fa fa-shopping-bag"></i></a>
-								</div>
-							</div>
-							<div class="col-lg-6 col-md-6 col-12 no-padding">
-								<div class="content">
-									<h4 class="title"><a href="#">Licity jelly leg flat Sandals</a></h4>
-									<p class="price with-discount">$59</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- End Single List  -->
-					<!-- Start Single List  -->
-					<div class="single-list">
-						<div class="row">
-							<div class="col-lg-6 col-md-6 col-12">
-								<div class="list-image overlay">
-									<img src="https://via.placeholder.com/115x140" alt="#">
-									<a href="#" class="buy"><i class="fa fa-shopping-bag"></i></a>
-								</div>
-							</div>
-							<div class="col-lg-6 col-md-6 col-12 no-padding">
-								<div class="content">
-									<h5 class="title"><a href="#">Licity jelly leg flat Sandals</a></h5>
-									<p class="price with-discount">$44</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- End Single List  -->
-					<!-- Start Single List  -->
-					<div class="single-list">
-						<div class="row">
-							<div class="col-lg-6 col-md-6 col-12">
-								<div class="list-image overlay">
-									<img src="https://via.placeholder.com/115x140" alt="#">
-									<a href="#" class="buy"><i class="fa fa-shopping-bag"></i></a>
-								</div>
-							</div>
-							<div class="col-lg-6 col-md-6 col-12 no-padding">
-								<div class="content">
-									<h5 class="title"><a href="#">Licity jelly leg flat Sandals</a></h5>
-									<p class="price with-discount">$89</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- End Single List  -->
-				</div>
-				<div class="col-lg-4 col-md-6 col-12">
-					<div class="row">
-						<div class="col-12">
-							<div class="shop-section-title">
-								<h1>Best Seller</h1>
-							</div>
-						</div>
-					</div>
-					<!-- Start Single List  -->
-					<div class="single-list">
-						<div class="row">
-							<div class="col-lg-6 col-md-6 col-12">
-								<div class="list-image overlay">
-									<img src="https://via.placeholder.com/115x140" alt="#">
-									<a href="#" class="buy"><i class="fa fa-shopping-bag"></i></a>
-								</div>
-							</div>
-							<div class="col-lg-6 col-md-6 col-12 no-padding">
-								<div class="content">
-									<h5 class="title"><a href="#">Licity jelly leg flat Sandals</a></h5>
-									<p class="price with-discount">$65</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- End Single List  -->
-					<!-- Start Single List  -->
-					<div class="single-list">
-						<div class="row">
-							<div class="col-lg-6 col-md-6 col-12">
-								<div class="list-image overlay">
-									<img src="https://via.placeholder.com/115x140" alt="#">
-									<a href="#" class="buy"><i class="fa fa-shopping-bag"></i></a>
-								</div>
-							</div>
-							<div class="col-lg-6 col-md-6 col-12 no-padding">
-								<div class="content">
-									<h5 class="title"><a href="#">Licity jelly leg flat Sandals</a></h5>
-									<p class="price with-discount">$33</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- End Single List  -->
-					<!-- Start Single List  -->
-					<div class="single-list">
-						<div class="row">
-							<div class="col-lg-6 col-md-6 col-12">
-								<div class="list-image overlay">
-									<img src="https://via.placeholder.com/115x140" alt="#">
-									<a href="#" class="buy"><i class="fa fa-shopping-bag"></i></a>
-								</div>
-							</div>
-							<div class="col-lg-6 col-md-6 col-12 no-padding">
-								<div class="content">
-									<h5 class="title"><a href="#">Licity jelly leg flat Sandals</a></h5>
-									<p class="price with-discount">$77</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- End Single List  -->
-				</div>
-				<div class="col-lg-4 col-md-6 col-12">
-					<div class="row">
-						<div class="col-12">
-							<div class="shop-section-title">
-								<h1>Top viewed</h1>
-							</div>
-						</div>
-					</div>
-					<!-- Start Single List  -->
-					<div class="single-list">
-						<div class="row">
-							<div class="col-lg-6 col-md-6 col-12">
-								<div class="list-image overlay">
-									<img src="https://via.placeholder.com/115x140" alt="#">
-									<a href="#" class="buy"><i class="fa fa-shopping-bag"></i></a>
-								</div>
-							</div>
-							<div class="col-lg-6 col-md-6 col-12 no-padding">
-								<div class="content">
-									<h5 class="title"><a href="#">Licity jelly leg flat Sandals</a></h5>
-									<p class="price with-discount">$22</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- End Single List  -->
-					<!-- Start Single List  -->
-					<div class="single-list">
-						<div class="row">
-							<div class="col-lg-6 col-md-6 col-12">
-								<div class="list-image overlay">
-									<img src="https://via.placeholder.com/115x140" alt="#">
-									<a href="#" class="buy"><i class="fa fa-shopping-bag"></i></a>
-								</div>
-							</div>
-							<div class="col-lg-6 col-md-6 col-12 no-padding">
-								<div class="content">
-									<h5 class="title"><a href="#">Licity jelly leg flat Sandals</a></h5>
-									<p class="price with-discount">$35</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- End Single List  -->
-					<!-- Start Single List  -->
-					<div class="single-list">
-						<div class="row">
-							<div class="col-lg-6 col-md-6 col-12">
-								<div class="list-image overlay">
-									<img src="https://via.placeholder.com/115x140" alt="#">
-									<a href="#" class="buy"><i class="fa fa-shopping-bag"></i></a>
-								</div>
-							</div>
-							<div class="col-lg-6 col-md-6 col-12 no-padding">
-								<div class="content">
-									<h5 class="title"><a href="#">Licity jelly leg flat Sandals</a></h5>
-									<p class="price with-discount">$99</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- End Single List  -->
-				</div>
-			</div>
-		</div>
-	</section>
 	<!-- End Shop Home List  -->
 	
 	<!-- Start Shop Blog  -->
@@ -1925,26 +1739,7 @@
 	<!-- End Shop Services Area -->
 	
 	<!-- Start Shop Newsletter  -->
-	<section class="shop-newsletter section">
-		<div class="container">
-			<div class="inner-top">
-				<div class="row">
-					<div class="col-lg-8 offset-lg-2 col-12">
-						<!-- Start Newsletter Inner -->
-						<div class="inner">
-							<h4>Newsletter</h4>
-							<p> Subscribe to our newsletter and get <span>10%</span> off your first purchase</p>
-							<form action="mail/mail.php" method="get" target="_blank" class="newsletter-inner">
-								<input name="EMAIL" placeholder="Your email address" required="" type="email">
-								<button class="btn">Subscribe</button>
-							</form>
-						</div>
-						<!-- End Newsletter Inner -->
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+
 	<!-- End Shop Newsletter -->
 	
 	<!-- Modal -->
